@@ -1,119 +1,5 @@
 import Foundation
 
-enum FlowDisc: String, CaseIterable, Identifiable {
-    case none = "No Disc"
-    case white = "White"
-    case black = "Black"
-    case red = "Red"
-
-    var id: String { rawValue }
-
-    var hasDisc: Bool {
-        self != .none
-    }
-
-    var flowRange: ClosedRange<Double>? {
-        switch self {
-        case .none:
-            nil
-        case .white:
-            60...120
-        case .black:
-            30...60
-        case .red:
-            7.5...30
-        }
-    }
-
-    func flowMessage(for gallonsPerHour: Double) -> String {
-        guard let flowRange else {
-            return "No Flo-Disc selected."
-        }
-
-        if flowRange.contains(gallonsPerHour) {
-            return "\(rawValue) disc is in range for \(gallonsPerHour.formatted(.number.precision(.fractionLength(0...1)))) GPH."
-        }
-
-        return "\(rawValue) disc range is \(flowRange.lowerBound.formatted(.number.precision(.fractionLength(0...1))))-\(flowRange.upperBound.formatted(.number.precision(.fractionLength(0...1)))) GPH."
-    }
-}
-
-enum FeedSetting: String, CaseIterable, Identifiable {
-    case slow = "Slow"
-    case one = "1"
-    case two = "2"
-    case fast = "Fast"
-
-    var id: String { rawValue }
-
-    func ratio(using flowDisc: FlowDisc) -> Double {
-        switch (flowDisc.hasDisc, self) {
-        case (false, .slow):
-            1000
-        case (false, .one):
-            500
-        case (false, .two):
-            250
-        case (false, .fast):
-            100
-        case (true, .slow):
-            250
-        case (true, .one):
-            125
-        case (true, .two):
-            62.5
-        case (true, .fast):
-            25
-        }
-    }
-}
-
-enum FertilizerRateUnit: String, CaseIterable, Identifiable {
-    case teaspoon = "tsp"
-    case tablespoon = "Tbsp"
-    case fluidOunce = "fl oz"
-    case cup = "cup"
-
-    var id: String { rawValue }
-
-    var teaspoons: Double {
-        switch self {
-        case .teaspoon:
-            1
-        case .tablespoon:
-            3
-        case .fluidOunce:
-            6
-        case .cup:
-            48
-        }
-    }
-}
-
-enum FertilizerRateBasis: String, CaseIterable, Identifiable {
-    case perGallon = "per gal"
-    case perTwoGallons = "per 2 gal"
-
-    var id: String { rawValue }
-
-    var gallons: Double {
-        switch self {
-        case .perGallon:
-            1
-        case .perTwoGallons:
-            2
-        }
-    }
-}
-
-struct FertilizerPreset: Identifiable, Hashable {
-    let id = UUID()
-    let title: String
-    let amount: Double
-    let unit: FertilizerRateUnit
-    let basis: FertilizerRateBasis
-}
-
 struct EZFlowCalculation {
     static let tankMixCapacityGallons = 2.0
 
@@ -136,14 +22,14 @@ struct EZFlowCalculation {
         wateringIntervalDays: Double = 0,
         minutesPerSession: Double = 0
     ) {
-        self.flowRateGPH = flowRateGPH
+        self.flowRateGPH = max(flowRateGPH, 0)
         self.feedSetting = feedSetting
         self.flowDisc = flowDisc
-        self.fertilizerAmount = fertilizerAmount
+        self.fertilizerAmount = max(fertilizerAmount, 0)
         self.fertilizerUnit = fertilizerUnit
         self.fertilizerRateBasis = fertilizerRateBasis
-        self.wateringIntervalDays = wateringIntervalDays
-        self.minutesPerSession = minutesPerSession
+        self.wateringIntervalDays = max(wateringIntervalDays, 0)
+        self.minutesPerSession = max(minutesPerSession, 0)
     }
 
     var ratio: Double {

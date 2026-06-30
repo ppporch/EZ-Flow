@@ -7,11 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01E1C4712FF4832100F9AF8E /* FlowDisc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E1C4702FF4832100F9AF8E /* FlowDisc.swift */; };
+		01E1C4732FF4832F00F9AF8E /* FeedSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E1C4722FF4832F00F9AF8E /* FeedSetting.swift */; };
+		01E1C4752FF4832F00F9AF8E /* FertilizerRateUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E1C4742FF4832F00F9AF8E /* FertilizerRateUnit.swift */; };
+		01E1C4772FF4832F00F9AF8E /* FertilizerRateBasis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E1C4762FF4832F00F9AF8E /* FertilizerRateBasis.swift */; };
+		01E1C4792FF4832F00F9AF8E /* FertilizerPreset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E1C4782FF4832F00F9AF8E /* FertilizerPreset.swift */; };
+		01E1C47B2FF4835100F9AF8E /* FocusedField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E1C47A2FF4835100F9AF8E /* FocusedField.swift */; };
+		01E1C47D2FF4836300F9AF8E /* TankSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E1C47C2FF4836300F9AF8E /* TankSection.swift */; };
+		01E1C47F2FF4836300F9AF8E /* IrrigationSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E1C47E2FF4836300F9AF8E /* IrrigationSection.swift */; };
+		01E1C4812FF4836300F9AF8E /* WateringScheduleSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E1C4802FF4836300F9AF8E /* WateringScheduleSection.swift */; };
+		01E1C4832FF4838100F9AF8E /* FertilizerSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E1C4822FF4838100F9AF8E /* FertilizerSection.swift */; };
+		01E1C4852FF4838100F9AF8E /* SettingSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E1C4842FF4838100F9AF8E /* SettingSection.swift */; };
+		01E1C4872FF4838100F9AF8E /* ProductResultSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E1C4862FF4838100F9AF8E /* ProductResultSection.swift */; };
+		01E1C4892FF4839300F9AF8E /* ScheduleResultSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E1C4882FF4839300F9AF8E /* ScheduleResultSection.swift */; };
+		01E1C48B2FF4839300F9AF8E /* GuidanceSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E1C48A2FF4839300F9AF8E /* GuidanceSection.swift */; };
 		0A0B0C0D0E0F100000000001 /* EZFlowCalculatorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0B0C0D0E0F100000000101 /* EZFlowCalculatorApp.swift */; };
 		0A0B0C0D0E0F100000000002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0B0C0D0E0F100000000102 /* ContentView.swift */; };
 		0A0B0C0D0E0F100000000003 /* EZFlowCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0B0C0D0E0F100000000103 /* EZFlowCalculator.swift */; };
 		0A0B0C0D0E0F100000000004 /* EZFlowCalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0B0C0D0E0F100000000201 /* EZFlowCalculatorTests.swift */; };
-		0A0B0C0D0E0F100000000005 /* EZFlowCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0B0C0D0E0F100000000103 /* EZFlowCalculator.swift */; };
 		0A0B0C0D0E0F100000000006 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A0B0C0D0E0F100000000104 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -26,6 +39,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		01E1C4702FF4832100F9AF8E /* FlowDisc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowDisc.swift; sourceTree = "<group>"; };
+		01E1C4722FF4832F00F9AF8E /* FeedSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedSetting.swift; sourceTree = "<group>"; };
+		01E1C4742FF4832F00F9AF8E /* FertilizerRateUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FertilizerRateUnit.swift; sourceTree = "<group>"; };
+		01E1C4762FF4832F00F9AF8E /* FertilizerRateBasis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FertilizerRateBasis.swift; sourceTree = "<group>"; };
+		01E1C4782FF4832F00F9AF8E /* FertilizerPreset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FertilizerPreset.swift; sourceTree = "<group>"; };
+		01E1C47A2FF4835100F9AF8E /* FocusedField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusedField.swift; sourceTree = "<group>"; };
+		01E1C47C2FF4836300F9AF8E /* TankSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TankSection.swift; sourceTree = "<group>"; };
+		01E1C47E2FF4836300F9AF8E /* IrrigationSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IrrigationSection.swift; sourceTree = "<group>"; };
+		01E1C4802FF4836300F9AF8E /* WateringScheduleSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WateringScheduleSection.swift; sourceTree = "<group>"; };
+		01E1C4822FF4838100F9AF8E /* FertilizerSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FertilizerSection.swift; sourceTree = "<group>"; };
+		01E1C4842FF4838100F9AF8E /* SettingSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingSection.swift; sourceTree = "<group>"; };
+		01E1C4862FF4838100F9AF8E /* ProductResultSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductResultSection.swift; sourceTree = "<group>"; };
+		01E1C4882FF4839300F9AF8E /* ScheduleResultSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleResultSection.swift; sourceTree = "<group>"; };
+		01E1C48A2FF4839300F9AF8E /* GuidanceSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidanceSection.swift; sourceTree = "<group>"; };
 		0A0B0C0D0E0F100000000101 /* EZFlowCalculatorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZFlowCalculatorApp.swift; sourceTree = "<group>"; };
 		0A0B0C0D0E0F100000000102 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		0A0B0C0D0E0F100000000103 /* EZFlowCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZFlowCalculator.swift; sourceTree = "<group>"; };
@@ -69,6 +96,20 @@
 				0A0B0C0D0E0F100000000102 /* ContentView.swift */,
 				0A0B0C0D0E0F100000000103 /* EZFlowCalculator.swift */,
 				0A0B0C0D0E0F100000000104 /* Assets.xcassets */,
+				01E1C4702FF4832100F9AF8E /* FlowDisc.swift */,
+				01E1C4722FF4832F00F9AF8E /* FeedSetting.swift */,
+				01E1C4742FF4832F00F9AF8E /* FertilizerRateUnit.swift */,
+				01E1C4762FF4832F00F9AF8E /* FertilizerRateBasis.swift */,
+				01E1C4782FF4832F00F9AF8E /* FertilizerPreset.swift */,
+				01E1C47A2FF4835100F9AF8E /* FocusedField.swift */,
+				01E1C47C2FF4836300F9AF8E /* TankSection.swift */,
+				01E1C47E2FF4836300F9AF8E /* IrrigationSection.swift */,
+				01E1C4802FF4836300F9AF8E /* WateringScheduleSection.swift */,
+				01E1C4822FF4838100F9AF8E /* FertilizerSection.swift */,
+				01E1C4842FF4838100F9AF8E /* SettingSection.swift */,
+				01E1C4862FF4838100F9AF8E /* ProductResultSection.swift */,
+				01E1C4882FF4839300F9AF8E /* ScheduleResultSection.swift */,
+				01E1C48A2FF4839300F9AF8E /* GuidanceSection.swift */,
 			);
 			path = EZFlowCalculator;
 			sourceTree = "<group>";
@@ -190,9 +231,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01E1C4712FF4832100F9AF8E /* FlowDisc.swift in Sources */,
+				01E1C4752FF4832F00F9AF8E /* FertilizerRateUnit.swift in Sources */,
+				01E1C4732FF4832F00F9AF8E /* FeedSetting.swift in Sources */,
 				0A0B0C0D0E0F100000000001 /* EZFlowCalculatorApp.swift in Sources */,
+				01E1C47F2FF4836300F9AF8E /* IrrigationSection.swift in Sources */,
+				01E1C4832FF4838100F9AF8E /* FertilizerSection.swift in Sources */,
+				01E1C4792FF4832F00F9AF8E /* FertilizerPreset.swift in Sources */,
+				01E1C4892FF4839300F9AF8E /* ScheduleResultSection.swift in Sources */,
 				0A0B0C0D0E0F100000000002 /* ContentView.swift in Sources */,
+				01E1C4852FF4838100F9AF8E /* SettingSection.swift in Sources */,
+				01E1C48B2FF4839300F9AF8E /* GuidanceSection.swift in Sources */,
+				01E1C4812FF4836300F9AF8E /* WateringScheduleSection.swift in Sources */,
+				01E1C47B2FF4835100F9AF8E /* FocusedField.swift in Sources */,
 				0A0B0C0D0E0F100000000003 /* EZFlowCalculator.swift in Sources */,
+				01E1C4772FF4832F00F9AF8E /* FertilizerRateBasis.swift in Sources */,
+				01E1C47D2FF4836300F9AF8E /* TankSection.swift in Sources */,
+				01E1C4872FF4838100F9AF8E /* ProductResultSection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,7 +256,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A0B0C0D0E0F100000000004 /* EZFlowCalculatorTests.swift in Sources */,
-				0A0B0C0D0E0F100000000005 /* EZFlowCalculator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,6 +453,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = J5HN594XD2;
 				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -420,6 +475,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = J5HN594XD2;
 				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
