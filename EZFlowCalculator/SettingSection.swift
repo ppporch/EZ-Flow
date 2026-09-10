@@ -17,14 +17,15 @@ struct SettingSection: View {
             .onChange(of: selectedSetting, dismissKeyboard)
 
             LabeledContent("Injection ratio", value: "\(calculation.ratio.formatted(.number.precision(.fractionLength(0...1)))):1")
-            LabeledContent("Gallons to empty", value: "\(calculation.gallonsToEmpty.formatted(.number.precision(.fractionLength(0...1)))) gal")
-            LabeledContent("Runtime", value: runtimeText)
+            LabeledContent("Water until fertilizer is used up", value: "\(calculation.gallonsToEmpty.formatted(.number.precision(.fractionLength(0...1)))) gal")
+            LabeledContent("Feeding runtime", value: runtimeText)
         }
     }
 
     private var runtimeText: String {
-        let totalMinutes = Int((calculation.runtimeHours * 60).rounded())
-        guard totalMinutes > 0 else { return "Enter flow" }
+        guard calculation.flowRateGPH > 0 else { return "Enter flow" }
+        guard let totalMinutes = calculation.runtimeMinutes else { return "Check flow rate" }
+        guard totalMinutes > 0 else { return "Less than 1 min" }
 
         let hours = totalMinutes / 60
         let minutes = totalMinutes % 60

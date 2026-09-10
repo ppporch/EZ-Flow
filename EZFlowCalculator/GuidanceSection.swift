@@ -1,25 +1,15 @@
 import SwiftUI
 
 struct GuidanceSection: View {
-    let calculation: EZFlowCalculation
-    let selectedDisc: FlowDisc
-
     var body: some View {
         Section("Checks") {
-            if calculation.exceedsTankCapacity {
-                Label("This application rate requires more than 2 gallons of product. Use a stronger EZ-Flow setting or split the application.", systemImage: "exclamationmark.triangle.fill")
-                    .foregroundStyle(.red)
-            }
-
-            if calculation.exceedsFloDiscPremixGuidance {
-                Label("With a Flo-Disc, the manual recommends a 25% product mix. This result is above that guidance.", systemImage: "exclamationmark.triangle.fill")
-                    .foregroundStyle(.orange)
-            } else if selectedDisc.hasDisc {
-                Label("Flo-Disc setup: add product, then water to make 2.0 gallons total mix.", systemImage: "checkmark.circle.fill")
-                    .foregroundStyle(.green)
-            }
-
-            Text("First application: EZ-FLO recommends starting at half of the fertilizer label rate.")
+            Text("First application: EZ-FLO recommends half of the fertilizer label rate. Enter that reduced rate above; the calculator does not halve it automatically.")
+                .font(.footnote)
+                .foregroundStyle(.secondary)
+            Text("Feed rates are approximate. Confirm feeding by color in the clear outlet tube while water is flowing; add dye if the product is clear. When the color runs out, the fertilizer is used up even though the tank remains full of water.")
+                .font(.footnote)
+                .foregroundStyle(.secondary)
+            Text("Recalculate the product amount whenever you change the feed setting, disc, or tank size. Changing the setting on an already filled tank changes the application rate.")
                 .font(.footnote)
                 .foregroundStyle(.secondary)
         }

@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 
 struct IrrigationSection: View {
     @Binding var flowRate: Double
@@ -19,6 +20,16 @@ struct IrrigationSection: View {
                     .keyboardType(.decimalPad)
                     .multilineTextAlignment(.trailing)
                     .focused(focusedField, equals: .flowRate)
+                    .onChange(of: focusedField.wrappedValue) {
+                        guard focusedField.wrappedValue == .flowRate else { return }
+                        // Select after the tap has finished placing the insertion point.
+                        DispatchQueue.main.async {
+                            guard focusedField.wrappedValue == .flowRate else { return }
+                            UIApplication.shared.sendAction(
+                                #selector(UIResponder.selectAll(_:)), to: nil, from: nil, for: nil
+                            )
+                        }
+                    }
                     .submitLabel(.done)
                     .onSubmit(dismissKeyboard)
                     .frame(maxWidth: 90)

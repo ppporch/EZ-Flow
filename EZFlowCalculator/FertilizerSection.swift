@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 
 struct FertilizerSection: View {
     @Binding var fertilizerAmount: Double
@@ -15,6 +16,16 @@ struct FertilizerSection: View {
                 TextField("Amount", value: $fertilizerAmount, format: .number)
                     .keyboardType(.decimalPad)
                     .focused(focusedField, equals: .fertilizerAmount)
+                    .onChange(of: focusedField.wrappedValue) {
+                        guard focusedField.wrappedValue == .fertilizerAmount else { return }
+                        // Select after the tap has finished placing the insertion point.
+                        DispatchQueue.main.async {
+                            guard focusedField.wrappedValue == .fertilizerAmount else { return }
+                            UIApplication.shared.sendAction(
+                                #selector(UIResponder.selectAll(_:)), to: nil, from: nil, for: nil
+                            )
+                        }
+                    }
                     .submitLabel(.done)
                     .onSubmit(dismissKeyboard)
                 Picker("Unit", selection: $fertilizerUnit) {

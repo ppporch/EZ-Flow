@@ -1,11 +1,23 @@
 import SwiftUI
 
 struct TankSection: View {
+    @Binding var tankSize: TankSize
+    @State private var showingFeedingChart = false
+
     var body: some View {
         Section("Tank") {
-            LabeledContent("Model", value: "EZ 2020-HB")
-            LabeledContent("Tank size", value: "2.5 gal")
-            LabeledContent("Usable liquid mix", value: "2.0 gal")
+            Picker("Fertigator size", selection: $tankSize) {
+                ForEach(TankSize.allCases) { size in
+                    Text(size.rawValue).tag(size)
+                }
+            }
+            LabeledContent("Model", value: tankSize.model)
+            Button("View feeding chart", systemImage: "doc.text") {
+                showingFeedingChart = true
+            }
+        }
+        .sheet(isPresented: $showingFeedingChart) {
+            FeedingChartSheet()
         }
     }
 }

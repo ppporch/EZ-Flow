@@ -9,6 +9,7 @@ struct ContentView: View {
     @State private var fertilizerRateBasis: FertilizerRateBasis = .perTwoGallons
     @State private var wateringIntervalDays = 2
     @State private var minutesPerSession = 30.0
+    @State private var tankSize: TankSize = .twoAndHalfGallons
     @FocusState private var focusedField: FocusedField?
 
     private let presets: [FertilizerPreset] = [
@@ -27,14 +28,16 @@ struct ContentView: View {
             fertilizerUnit: fertilizerUnit,
             fertilizerRateBasis: fertilizerRateBasis,
             wateringIntervalDays: Double(wateringIntervalDays),
-            minutesPerSession: minutesPerSession
+            minutesPerSession: minutesPerSession,
+            tankSize: tankSize
         )
     }
 
     var body: some View {
         NavigationStack {
             Form {
-                TankSection()
+                TankSection(tankSize: $tankSize)
+                    .onChange(of: tankSize, dismissKeyboard)
                 IrrigationSection(
                     flowRate: $flowRate,
                     selectedDisc: $selectedDisc,
@@ -60,7 +63,7 @@ struct ContentView: View {
                 )
                 ProductResultSection(calculation: calculation)
                 ScheduleResultSection(calculation: calculation)
-                GuidanceSection(calculation: calculation, selectedDisc: selectedDisc)
+                GuidanceSection()
             }
             .navigationTitle("EZ-Flow Calculator")
             .scrollDismissesKeyboard(.interactively)

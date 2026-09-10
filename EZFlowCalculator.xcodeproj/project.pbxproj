@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A12026091000000000000009 /* 1205-2022 Hose Bib Feed Chart Instructions v1.pdf in Resources */ = {isa = PBXBuildFile; fileRef = A12026091000000000000010 /* 1205-2022 Hose Bib Feed Chart Instructions v1.pdf */; };
+		A12026091000000000000007 /* FeedingChartPDFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12026091000000000000008 /* FeedingChartPDFView.swift */; };
+		A12026091000000000000005 /* FeedingChartSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12026091000000000000006 /* FeedingChartSheet.swift */; };
+		A12026091000000000000003 /* TankSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12026091000000000000004 /* TankSize.swift */; };
+		A12026091000000000000001 /* FeedingChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12026091000000000000002 /* FeedingChart.swift */; };
 		01E1C4712FF4832100F9AF8E /* FlowDisc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E1C4702FF4832100F9AF8E /* FlowDisc.swift */; };
 		01E1C4732FF4832F00F9AF8E /* FeedSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E1C4722FF4832F00F9AF8E /* FeedSetting.swift */; };
 		01E1C4752FF4832F00F9AF8E /* FertilizerRateUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E1C4742FF4832F00F9AF8E /* FertilizerRateUnit.swift */; };
@@ -39,6 +44,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A12026091000000000000010 /* 1205-2022 Hose Bib Feed Chart Instructions v1.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "1205-2022 Hose Bib Feed Chart Instructions v1.pdf"; sourceTree = "<group>"; };
+		A12026091000000000000008 /* FeedingChartPDFView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedingChartPDFView.swift"; sourceTree = "<group>"; };
+		A12026091000000000000006 /* FeedingChartSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedingChartSheet.swift"; sourceTree = "<group>"; };
+		A12026091000000000000004 /* TankSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TankSize.swift; sourceTree = "<group>"; };
+		A12026091000000000000002 /* FeedingChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedingChart.swift; sourceTree = "<group>"; };
 		01E1C4702FF4832100F9AF8E /* FlowDisc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowDisc.swift; sourceTree = "<group>"; };
 		01E1C4722FF4832F00F9AF8E /* FeedSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedSetting.swift; sourceTree = "<group>"; };
 		01E1C4742FF4832F00F9AF8E /* FertilizerRateUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FertilizerRateUnit.swift; sourceTree = "<group>"; };
@@ -84,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				0A0B0C0D0E0F100000000802 /* EZFlowCalculator */,
+				A12026091000000000000010 /* 1205-2022 Hose Bib Feed Chart Instructions v1.pdf */,
 				0A0B0C0D0E0F100000000803 /* EZFlowCalculatorTests */,
 				0A0B0C0D0E0F100000000804 /* Products */,
 			);
@@ -98,6 +109,10 @@
 				0A0B0C0D0E0F100000000104 /* Assets.xcassets */,
 				01E1C4702FF4832100F9AF8E /* FlowDisc.swift */,
 				01E1C4722FF4832F00F9AF8E /* FeedSetting.swift */,
+				A12026091000000000000002 /* FeedingChart.swift */,
+				A12026091000000000000008 /* FeedingChartPDFView.swift */,
+				A12026091000000000000006 /* FeedingChartSheet.swift */,
+				A12026091000000000000004 /* TankSize.swift */,
 				01E1C4742FF4832F00F9AF8E /* FertilizerRateUnit.swift */,
 				01E1C4762FF4832F00F9AF8E /* FertilizerRateBasis.swift */,
 				01E1C4782FF4832F00F9AF8E /* FertilizerPreset.swift */,
@@ -214,6 +229,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A0B0C0D0E0F100000000006 /* Assets.xcassets in Resources */,
+				A12026091000000000000009 /* 1205-2022 Hose Bib Feed Chart Instructions v1.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,6 +250,10 @@
 				01E1C4712FF4832100F9AF8E /* FlowDisc.swift in Sources */,
 				01E1C4752FF4832F00F9AF8E /* FertilizerRateUnit.swift in Sources */,
 				01E1C4732FF4832F00F9AF8E /* FeedSetting.swift in Sources */,
+				A12026091000000000000001 /* FeedingChart.swift in Sources */,
+				A12026091000000000000007 /* FeedingChartPDFView.swift in Sources */,
+				A12026091000000000000005 /* FeedingChartSheet.swift in Sources */,
+				A12026091000000000000003 /* TankSize.swift in Sources */,
 				0A0B0C0D0E0F100000000001 /* EZFlowCalculatorApp.swift in Sources */,
 				01E1C47F2FF4836300F9AF8E /* IrrigationSection.swift in Sources */,
 				01E1C4832FF4838100F9AF8E /* FertilizerSection.swift in Sources */,
