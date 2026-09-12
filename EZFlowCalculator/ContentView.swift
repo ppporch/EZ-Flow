@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 
 struct ContentView: View {
     @State private var flowRate = 104.0
@@ -35,44 +36,60 @@ struct ContentView: View {
 
     var body: some View {
         NavigationStack {
-            Form {
-                TankSection(tankSize: $tankSize)
-                    .onChange(of: tankSize, dismissKeyboard)
-                IrrigationSection(
-                    flowRate: $flowRate,
-                    selectedDisc: $selectedDisc,
-                    focusedField: $focusedField
-                )
-                WateringScheduleSection(
-                    wateringIntervalDays: $wateringIntervalDays,
-                    minutesPerSession: $minutesPerSession,
-                    focusedField: $focusedField
-                )
-                FertilizerSection(
-                    fertilizerAmount: $fertilizerAmount,
-                    fertilizerUnit: $fertilizerUnit,
-                    fertilizerRateBasis: $fertilizerRateBasis,
-                    calculation: calculation,
-                    presets: presets,
-                    focusedField: $focusedField
-                )
-                SettingSection(
-                    selectedSetting: $selectedSetting,
-                    calculation: calculation,
-                    focusedField: $focusedField
-                )
-                ProductResultSection(calculation: calculation)
-                ScheduleResultSection(calculation: calculation)
-                GuidanceSection()
-            }
-            .navigationTitle("EZ-Flow Calculator")
-            .scrollDismissesKeyboard(.interactively)
-            .toolbar {
-                ToolbarItemGroup(placement: .keyboard) {
-                    Spacer()
-                    Button("Done", action: dismissKeyboard)
+            ScrollViewReader { scrollProxy in
+                Form {
+                    TankSection(tankSize: $tankSize)
+                        .onChange(of: tankSize, dismissKeyboard)
+                    IrrigationSection(
+                        flowRate: $flowRate,
+                        selectedDisc: $selectedDisc,
+                        focusedField: $focusedField
+                    )
+                    WateringScheduleSection(
+                        wateringIntervalDays: $wateringIntervalDays,
+                        minutesPerSession: $minutesPerSession,
+                        focusedField: $focusedField
+                    )
+                    FertilizerSection(
+                        fertilizerAmount: $fertilizerAmount,
+                        fertilizerUnit: $fertilizerUnit,
+                        fertilizerRateBasis: $fertilizerRateBasis,
+                        calculation: calculation,
+                        presets: presets,
+                        focusedField: $focusedField
+                    )
+                    SettingSection(
+                        selectedSetting: $selectedSetting,
+                        calculation: calculation,
+                        focusedField: $focusedField
+                    )
+                    ProductResultSection(calculation: calculation)
+                    ScheduleResultSection(calculation: calculation)
+                    GuidanceSection()
+                }
+                .navigationTitle("EZ-Flow Calculator")
+                .scrollDismissesKeyboard(.interactively)
+                .toolbar {
+                    ToolbarItemGroup(placement: .keyboard) {
+                        Spacer()
+                        Button("Done", action: dismissKeyboard)
+                    }
+                }
+                .onChange(of: focusedField) {
+                    revealFocusedField(using: scrollProxy)
+                }
+                .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardDidShowNotification)) { _ in
+                    // Repeat after the keyboard has resized the form's visible area.
+                    revealFocusedField(using: scrollProxy)
                 }
             }
+        }
+    }
+
+    private func revealFocusedField(using scrollProxy: ScrollViewProxy) {
+        guard let focusedField else { return }
+        withAnimation {
+            scrollProxy.scrollTo(focusedField, anchor: .center)
         }
     }
 

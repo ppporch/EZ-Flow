@@ -43,6 +43,7 @@ struct FertilizerSection: View {
                 .labelsHidden()
                 .onChange(of: fertilizerRateBasis, dismissKeyboard)
             }
+            .id(FocusedField.fertilizerAmount)
 
             LabeledContent("Normalized rate", value: "\(calculation.fertilizerTeaspoonsPerGallon.formatted(.number.precision(.fractionLength(1...2)))) tsp/gal")
 

@@ -36,6 +36,7 @@ struct IrrigationSection: View {
                 Text("GPH")
                     .foregroundStyle(.secondary)
             }
+            .id(FocusedField.flowRate)
 
             Picker("Flo-Disc", selection: $selectedDisc) {
                 ForEach(FlowDisc.allCases) { disc in
