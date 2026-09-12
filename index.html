@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Support for EZ-Flow Calculator for iPhone. Get help with fertilizer estimates, feeding runtime, and TestFlight feedback.">
+  <title>EZ-Flow Calculator Support</title>
+  <style>
+    :root { color-scheme: light dark; font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; color: #19372c; background: #f4f7f4; }
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    main { max-width: 760px; margin: auto; padding: 48px 24px; }
+    header { margin-bottom: 32px; }
+    .eyebrow { color: #376851; font-weight: 650; letter-spacing: .06em; text-transform: uppercase; font-size: .8rem; }
+    h1 { font-size: clamp(2rem, 6vw, 3rem); line-height: 1.15; margin: 12px 0; }
+    h2 { font-size: 1.3rem; line-height: 1.3; margin-top: 0; }
+    h3 { font-size: 1rem; margin-bottom: 4px; }
+    p { margin-top: 0; }
+    section { background: #fff; border: 1px solid #dce6de; border-radius: 16px; padding: 24px; margin-bottom: 20px; }
+    a { color: #176345; text-underline-offset: 3px; overflow-wrap: anywhere; }
+    a:focus-visible { outline: 3px solid #ba7900; outline-offset: 5px; }
+    .button { display: inline-block; background: #176345; color: white; padding: 12px 20px; border-radius: 9px; font-weight: 650; }
+    li { margin: 8px 0; }
+    footer { font-size: .9rem; color: #526358; }
+    @media (prefers-color-scheme: dark) {
+      :root { color: #e3eee7; background: #122019; }
+      section { background: #1c2d23; border-color: #3b5042; }
+      a, .eyebrow { color: #a0ddbb; }
+      .button { color: #fff; background: #246e4e; }
+      footer { color: #b1c4b7; }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="eyebrow">iPhone app support</div>
+    <h1>EZ-Flow Calculator</h1>
+    <p>Help with fertilizer amounts, feeding time, and watering estimates for ¾-gallon and 2.5-gallon EZ-FLO hose and drip systems.</p>
+  </header>
+  <section aria-labelledby="contact">
+    <h2 id="contact">Get help or report a problem</h2>
+    <p>Contact Phillip Porch at <a href="mailto:ppporch@theporch.com">ppporch@theporch.com</a>.</p>
+    <p><a class="button" href="mailto:ppporch@theporch.com?subject=EZ-Flow%20Calculator%20Support">Email support</a></p>
+    <p>To help reproduce a problem, please include:</p>
+    <ul>
+      <li>Your iPhone model, iOS version, and app version or TestFlight build number.</li>
+      <li>What you were doing, what you expected, and what happened.</li>
+      <li>For a calculation question: tank size, flow rate, disc, feed setting, fertilizer label rate and units, and watering schedule.</li>
+      <li>A screenshot if it helps explain the issue. Remove any personal information you don’t want to share.</li>
+    </ul>
+    <p>TestFlight testers can also use <strong>Send Beta Feedback</strong> in TestFlight.</p>
+  </section>
+  <section aria-labelledby="start">
+    <h2 id="start">Getting started</h2>
+    <ol>
+      <li>Select your fertigator size: ¾ gallon or 2.5 gallons.</li>
+      <li>Enter irrigation flow in gallons per hour (GPH), then select the installed Flo-Disc and feed setting.</li>
+      <li>Enter the fertilizer label rate with the matching amount unit and water basis.</li>
+      <li>Set your watering interval and minutes per session, then review the product amount and feeding estimates below.</li>
+    </ol>
+    <p>Tap <strong>View feeding chart</strong> to read the reference PDF within the app, even offline.</p>
+  </section>
+  <section aria-labelledby="questions">
+    <h2 id="questions">Common questions</h2>
+    <h3>What does feeding runtime mean?</h3>
+    <p>It estimates how long one charge will feed at your entered irrigation flow. The app multiplies tank capacity by the selected dilution ratio, then divides the resulting irrigation gallons by gallons per hour. This is feeding time, not a recommendation for how long to water.</p>
+    <h3>Why does the fertilizer rate say “per 2 gal”?</h3>
+    <p>That describes the fertilizer label’s mixing rate, not the tank size. Match the amount, unit, and water basis to your product label.</p>
+    <h3>Why is there a refill warning?</h3>
+    <p>Your watering session is longer than the estimated feeding time of one charge. Session and weekly product estimates assume refills as needed to maintain the entered feeding rate.</p>
+    <h3>How do I replace a number?</h3>
+    <p>Tap Flow rate, Minutes / session, or the fertilizer amount. The value is selected so typing replaces it. The form scrolls the active field above the keyboard. Tap Done to close the keyboard. If this behaves differently, include your app build number when contacting support.</p>
+    <h3>Does the app need an account or internet connection?</h3>
+    <p>No account is required. Calculations and the bundled feeding chart work offline. Emailing support and opening external links require an internet connection.</p>
+  </section>
+  <section aria-labelledby="reference">
+    <h2 id="reference">Feeding reference</h2>
+    <p>Calculations use the <a href="https://www.dripdepot.com/file/parent/1205/1205-2022%20Hose%20Bib%20Feed%20Chart%20Instructions%20v1.pdf">2022 EZ-FLO Hose Bib Feed Chart Instructions</a>, created by EZ-FLO and hosted by Drip Depot.</p>
+    <p>Feed rates are approximate. Follow your equipment instructions and fertilizer label. The calculator’s capacity check does not establish a manufacturer-approved product loading limit. For equipment setup or product compatibility, consult the manufacturer or supplier.</p>
+  </section>
+  <footer>
+    <p>EZ-Flow Calculator is an independent app and is not affiliated with EZ-FLO or Drip Depot.</p>
+    <p><a href="https://github.com/ppporch/EZ-Flow">Project on GitHub</a></p>
+  </footer>
+</main>
+</body>
+</html>

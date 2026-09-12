@@ -2,6 +2,10 @@
 
 A SwiftUI iPhone app for estimating fertilizer amounts for the ¾-gallon EZ 2005-HB and 2.5-gallon EZ 2020-HB hose and drip injectors.
 
+## Support
+
+Visit the [support page](https://ppporch.github.io/EZ-Flow/) for help, common questions, and contact information.
+
 ## Fertigator size and feeding reference
 
 Choose **2.5 gallons** or **¾ gallon** in the Tank section. The default is 2.5 gallons. Changing size updates the product charge, feeding runtime, coverage, and nominal-capacity check.
