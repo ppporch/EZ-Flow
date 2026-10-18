@@ -1,10 +1,19 @@
 enum FeedSetting: String, CaseIterable, Identifiable {
-    case slow = "Slow"
-    case one = "1"
-    case two = "2"
-    case fast = "Fast"
+    case slow
+    case one
+    case two
+    case fast
 
     var id: String { rawValue }
+
+    var displayName: String {
+        switch self {
+        case .slow: "Slow"
+        case .one: "1"
+        case .two: "2"
+        case .fast: "Fast"
+        }
+    }
 
     func ratio(using flowDisc: FlowDisc) -> Double {
         switch (flowDisc.hasDisc, self) {

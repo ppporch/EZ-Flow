@@ -1,5 +1,4 @@
 import SwiftUI
-import UIKit
 
 struct WateringScheduleSection: View {
     @Binding var wateringIntervalDays: Int
@@ -21,17 +20,9 @@ struct WateringScheduleSection: View {
                 TextField("30", value: $minutesPerSession, format: .number)
                     .keyboardType(.decimalPad)
                     .multilineTextAlignment(.trailing)
+                    .accessibilityLabel("Minutes per session")
                     .focused(focusedField, equals: .minutesPerSession)
-                    .onChange(of: focusedField.wrappedValue) {
-                        guard focusedField.wrappedValue == .minutesPerSession else { return }
-                        // Select after the tap has finished placing the insertion point.
-                        DispatchQueue.main.async {
-                            guard focusedField.wrappedValue == .minutesPerSession else { return }
-                            UIApplication.shared.sendAction(
-                                #selector(UIResponder.selectAll(_:)), to: nil, from: nil, for: nil
-                            )
-                        }
-                    }
+                    .selectAllOnFocus(focusedField, equals: .minutesPerSession)
                     .submitLabel(.done)
                     .onSubmit(dismissKeyboard)
                     .frame(maxWidth: 80)

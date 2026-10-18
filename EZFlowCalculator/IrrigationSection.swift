@@ -1,5 +1,4 @@
 import SwiftUI
-import UIKit
 
 struct IrrigationSection: View {
     @Binding var flowRate: Double
@@ -18,17 +17,9 @@ struct IrrigationSection: View {
                 TextField("104", value: $flowRate, format: .number)
                     .keyboardType(.decimalPad)
                     .multilineTextAlignment(.trailing)
+                    .accessibilityLabel("Flow rate in gallons per hour")
                     .focused(focusedField, equals: .flowRate)
-                    .onChange(of: focusedField.wrappedValue) {
-                        guard focusedField.wrappedValue == .flowRate else { return }
-                        // Select after the tap has finished placing the insertion point.
-                        DispatchQueue.main.async {
-                            guard focusedField.wrappedValue == .flowRate else { return }
-                            UIApplication.shared.sendAction(
-                                #selector(UIResponder.selectAll(_:)), to: nil, from: nil, for: nil
-                            )
-                        }
-                    }
+                    .selectAllOnFocus(focusedField, equals: .flowRate)
                     .submitLabel(.done)
                     .onSubmit(dismissKeyboard)
                     .frame(maxWidth: 90)
@@ -39,7 +30,7 @@ struct IrrigationSection: View {
 
             Picker("Flo-Disc", selection: $selectedDisc) {
                 ForEach(FlowDisc.allCases) { disc in
-                    Text(disc.rawValue).tag(disc)
+                    Text(disc.displayName).tag(disc)
                 }
             }
             .onChange(of: selectedDisc, dismissKeyboard)

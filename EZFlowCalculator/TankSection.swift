@@ -8,7 +8,7 @@ struct TankSection: View {
         Section("Tank") {
             Picker("Fertigator size", selection: $tankSize) {
                 ForEach(TankSize.allCases) { size in
-                    Text(size.rawValue).tag(size)
+                    Text(size.displayName).tag(size)
                 }
             }
             LabeledContent("Model", value: tankSize.model)

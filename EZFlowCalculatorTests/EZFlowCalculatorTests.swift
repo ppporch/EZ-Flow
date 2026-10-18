@@ -47,7 +47,7 @@ struct EZFlowCalculatorTests {
             fertilizerAmount: 2, fertilizerUnit: unit, fertilizerRateBasis: basis
         )
         #expect(calculation.productAmountInSelectedUnit == 125 / basis.gallons)
-        #expect(calculation.productInLabelUnitsSummary.contains(" \(unit.rawValue)"))
+        #expect(calculation.productInLabelUnitsSummary.contains(" \(unit.displayName)"))
     }
 
     @Test(arguments: [

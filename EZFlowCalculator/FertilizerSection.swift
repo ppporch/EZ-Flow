@@ -1,5 +1,4 @@
 import SwiftUI
-import UIKit
 
 struct FertilizerSection: View {
     @Binding var fertilizerAmount: Double
@@ -24,28 +23,19 @@ struct FertilizerSection: View {
                         .keyboardType(.decimalPad)
                         .accessibilityLabel("Fertilizer amount on the label")
                         .focused(focusedField, equals: .fertilizerAmount)
-                        .onChange(of: focusedField.wrappedValue) {
-                            guard focusedField.wrappedValue == .fertilizerAmount else { return }
-                            // Select after the tap has finished placing the insertion point.
-                            DispatchQueue.main.async {
-                                guard focusedField.wrappedValue == .fertilizerAmount else { return }
-                                UIApplication.shared.sendAction(
-                                    #selector(UIResponder.selectAll(_:)), to: nil, from: nil, for: nil
-                                )
-                            }
-                        }
+                        .selectAllOnFocus(focusedField, equals: .fertilizerAmount)
                         .submitLabel(.done)
                         .onSubmit(dismissKeyboard)
                 }
                 Picker("Unit", selection: $fertilizerUnit) {
                     ForEach(FertilizerRateUnit.allCases) { unit in
-                        Text(unit.rawValue).tag(unit)
+                        Text(unit.displayName).tag(unit)
                     }
                 }
                 .onChange(of: fertilizerUnit, dismissKeyboard)
                 Picker("Label water volume", selection: $fertilizerRateBasis) {
                     ForEach(FertilizerRateBasis.allCases) { basis in
-                        Text(basis.rawValue).tag(basis)
+                        Text(basis.displayName).tag(basis)
                     }
                 }
                 .onChange(of: fertilizerRateBasis, dismissKeyboard)
@@ -57,8 +47,8 @@ struct FertilizerSection: View {
             Text("EZ-FLO recommends half the label rate for the first application. Enter the full label rate above; this switch applies the reduction once. Turn it off for later applications at the full label rate.")
                 .font(.footnote)
                 .foregroundStyle(.secondary)
-            LabeledContent("Label rate", value: "\(fertilizerAmount.formatted()) \(fertilizerUnit.rawValue) \(fertilizerRateBasis.rawValue)")
-            LabeledContent("Rate used (\(isFirstApplication ? 50 : 100)%)", value: "\(calculation.effectiveFertilizerAmount.formatted()) \(fertilizerUnit.rawValue) \(fertilizerRateBasis.rawValue)")
+            LabeledContent("Label rate", value: "\(fertilizerAmount.formatted()) \(fertilizerUnit.displayName) \(fertilizerRateBasis.displayName)")
+            LabeledContent("Rate used (\(isFirstApplication ? 50 : 100)%)", value: "\(calculation.effectiveFertilizerAmount.formatted()) \(fertilizerUnit.displayName) \(fertilizerRateBasis.displayName)")
             LabeledContent("Equivalent per gallon", value: "\(calculation.fertilizerTeaspoonsPerGallon.formatted(.number.precision(.fractionLength(1...2)))) tsp/gal")
 
             Text("Label rate shortcuts")

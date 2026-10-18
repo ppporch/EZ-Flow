@@ -1,8 +1,15 @@
 enum TankSize: String, CaseIterable, Identifiable {
-    case twoAndHalfGallons = "2.5 gallons"
-    case threeQuarterGallon = "¾ gallon"
+    case twoAndHalfGallons
+    case threeQuarterGallon
 
     var id: String { rawValue }
+
+    var displayName: String {
+        switch self {
+        case .twoAndHalfGallons: "2.5 gallons"
+        case .threeQuarterGallon: "¾ gallon"
+        }
+    }
 
     var model: String {
         switch self {

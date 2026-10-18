@@ -1,12 +1,21 @@
 import Foundation
 
 enum FlowDisc: String, CaseIterable, Identifiable {
-    case none = "No Disc"
-    case white = "White"
-    case black = "Black"
-    case red = "Red"
+    case none
+    case white
+    case black
+    case red
 
     var id: String { rawValue }
+
+    var displayName: String {
+        switch self {
+        case .none: "No Disc"
+        case .white: "White"
+        case .black: "Black"
+        case .red: "Red"
+        }
+    }
 
     var hasDisc: Bool {
         self != .none
@@ -50,9 +59,9 @@ enum FlowDisc: String, CaseIterable, Identifiable {
         }
 
         if flowRange.contains(gallonsPerHour) {
-            return "\(rawValue) disc is in range for \(gallonsPerHour.formatted(.number.precision(.fractionLength(0...1)))) GPH."
+            return "\(displayName) disc is in range for \(gallonsPerHour.formatted(.number.precision(.fractionLength(0...1)))) GPH."
         }
 
-        return "\(rawValue) disc range is \(flowRange.lowerBound.formatted(.number.precision(.fractionLength(0...1))))-\(flowRange.upperBound.formatted(.number.precision(.fractionLength(0...1)))) GPH."
+        return "\(displayName) disc range is \(flowRange.lowerBound.formatted(.number.precision(.fractionLength(0...1))))-\(flowRange.upperBound.formatted(.number.precision(.fractionLength(0...1)))) GPH."
     }
 }

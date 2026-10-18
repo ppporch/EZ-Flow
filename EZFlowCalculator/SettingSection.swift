@@ -10,7 +10,7 @@ struct SettingSection: View {
         Section("EZ-Flow Setting") {
             Picker("Feed rate", selection: $selectedSetting) {
                 ForEach(FeedSetting.allCases) { setting in
-                    Text(setting.rawValue).tag(setting)
+                    Text(setting.displayName).tag(setting)
                 }
             }
             .pickerStyle(.segmented)
