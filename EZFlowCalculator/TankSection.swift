@@ -15,9 +15,10 @@ struct TankSection: View {
             Button("View feeding chart", systemImage: "doc.text") {
                 showingFeedingChart = true
             }
-        }
-        .sheet(isPresented: $showingFeedingChart) {
-            FeedingChartSheet()
+            // Attach to the row, not the Section: Form applies Section modifiers to every row.
+            .sheet(isPresented: $showingFeedingChart) {
+                FeedingChartSheet()
+            }
         }
     }
 }
