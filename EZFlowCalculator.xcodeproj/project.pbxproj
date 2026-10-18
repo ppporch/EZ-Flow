@@ -7,12 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-        A12026101700000000000001 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = A12026101700000000000002 /* PrivacyInfo.xcprivacy */; };
-		A12026091000000000000009 /* 1205-2022 Hose Bib Feed Chart Instructions v1.pdf in Resources */ = {isa = PBXBuildFile; fileRef = A12026091000000000000010 /* 1205-2022 Hose Bib Feed Chart Instructions v1.pdf */; };
-		A12026091000000000000007 /* FeedingChartPDFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12026091000000000000008 /* FeedingChartPDFView.swift */; };
-		A12026091000000000000005 /* FeedingChartSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12026091000000000000006 /* FeedingChartSheet.swift */; };
-		A12026091000000000000003 /* TankSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12026091000000000000004 /* TankSize.swift */; };
-		A12026091000000000000001 /* FeedingChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12026091000000000000002 /* FeedingChart.swift */; };
 		01E1C4712FF4832100F9AF8E /* FlowDisc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E1C4702FF4832100F9AF8E /* FlowDisc.swift */; };
 		01E1C4732FF4832F00F9AF8E /* FeedSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E1C4722FF4832F00F9AF8E /* FeedSetting.swift */; };
 		01E1C4752FF4832F00F9AF8E /* FertilizerRateUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E1C4742FF4832F00F9AF8E /* FertilizerRateUnit.swift */; };
@@ -33,6 +27,12 @@
 		0A0B0C0D0E0F100000000003 /* EZFlowCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0B0C0D0E0F100000000103 /* EZFlowCalculator.swift */; };
 		0A0B0C0D0E0F100000000004 /* EZFlowCalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0B0C0D0E0F100000000201 /* EZFlowCalculatorTests.swift */; };
 		0A0B0C0D0E0F100000000006 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A0B0C0D0E0F100000000104 /* Assets.xcassets */; };
+		A12026091000000000000001 /* FeedingChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12026091000000000000002 /* FeedingChart.swift */; };
+		A12026091000000000000003 /* TankSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12026091000000000000004 /* TankSize.swift */; };
+		A12026091000000000000005 /* FeedingChartSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12026091000000000000006 /* FeedingChartSheet.swift */; };
+		A12026091000000000000007 /* FeedingChartPDFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12026091000000000000008 /* FeedingChartPDFView.swift */; };
+		A12026091000000000000009 /* 1205-2022 Hose Bib Feed Chart Instructions v1.pdf in Resources */ = {isa = PBXBuildFile; fileRef = A12026091000000000000010 /* 1205-2022 Hose Bib Feed Chart Instructions v1.pdf */; };
+		A12026101700000000000001 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = A12026101700000000000002 /* PrivacyInfo.xcprivacy */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,12 +46,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-        A12026101700000000000002 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		A12026091000000000000010 /* 1205-2022 Hose Bib Feed Chart Instructions v1.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "1205-2022 Hose Bib Feed Chart Instructions v1.pdf"; sourceTree = "<group>"; };
-		A12026091000000000000008 /* FeedingChartPDFView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedingChartPDFView.swift"; sourceTree = "<group>"; };
-		A12026091000000000000006 /* FeedingChartSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedingChartSheet.swift"; sourceTree = "<group>"; };
-		A12026091000000000000004 /* TankSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TankSize.swift; sourceTree = "<group>"; };
-		A12026091000000000000002 /* FeedingChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedingChart.swift; sourceTree = "<group>"; };
 		01E1C4702FF4832100F9AF8E /* FlowDisc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowDisc.swift; sourceTree = "<group>"; };
 		01E1C4722FF4832F00F9AF8E /* FeedSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedSetting.swift; sourceTree = "<group>"; };
 		01E1C4742FF4832F00F9AF8E /* FertilizerRateUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FertilizerRateUnit.swift; sourceTree = "<group>"; };
@@ -74,6 +68,12 @@
 		0A0B0C0D0E0F100000000201 /* EZFlowCalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZFlowCalculatorTests.swift; sourceTree = "<group>"; };
 		0A0B0C0D0E0F100000000601 /* EZFlowCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EZFlowCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A0B0C0D0E0F100000000602 /* EZFlowCalculatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EZFlowCalculatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A12026091000000000000002 /* FeedingChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedingChart.swift; sourceTree = "<group>"; };
+		A12026091000000000000004 /* TankSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TankSize.swift; sourceTree = "<group>"; };
+		A12026091000000000000006 /* FeedingChartSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedingChartSheet.swift; sourceTree = "<group>"; };
+		A12026091000000000000008 /* FeedingChartPDFView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedingChartPDFView.swift; sourceTree = "<group>"; };
+		A12026091000000000000010 /* 1205-2022 Hose Bib Feed Chart Instructions v1.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "1205-2022 Hose Bib Feed Chart Instructions v1.pdf"; sourceTree = "<group>"; };
+		A12026101700000000000002 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,7 +107,7 @@
 		0A0B0C0D0E0F100000000802 /* EZFlowCalculator */ = {
 			isa = PBXGroup;
 			children = (
-                A12026101700000000000002 /* PrivacyInfo.xcprivacy */,
+				A12026101700000000000002 /* PrivacyInfo.xcprivacy */,
 				0A0B0C0D0E0F100000000101 /* EZFlowCalculatorApp.swift */,
 				0A0B0C0D0E0F100000000102 /* ContentView.swift */,
 				0A0B0C0D0E0F100000000103 /* EZFlowCalculator.swift */,
@@ -198,7 +198,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 2700;
-				LastUpgradeCheck = 2700;
+				LastUpgradeCheck = 2710;
 				TargetAttributes = {
 					0A0B0C0D0E0F100000000501 = {
 						CreatedOnToolsVersion = 27.0;
@@ -235,7 +235,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A0B0C0D0E0F100000000006 /* Assets.xcassets in Resources */,
-                A12026101700000000000001 /* PrivacyInfo.xcprivacy in Resources */,
+				A12026101700000000000001 /* PrivacyInfo.xcprivacy in Resources */,
 				A12026091000000000000009 /* 1205-2022 Hose Bib Feed Chart Instructions v1.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -333,6 +333,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = J5HN594XD2;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -356,6 +357,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -396,6 +398,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = J5HN594XD2;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -412,6 +415,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -424,7 +428,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = J5HN594XD2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "EZ-Flow Calculator";
@@ -453,7 +456,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = J5HN594XD2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "EZ-Flow Calculator";
@@ -481,7 +483,6 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
-				DEVELOPMENT_TEAM = J5HN594XD2;
 				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -503,7 +504,6 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
-				DEVELOPMENT_TEAM = J5HN594XD2;
 				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
