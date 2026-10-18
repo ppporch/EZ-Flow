@@ -11,7 +11,7 @@ struct ContentView: View {
     @AppStorage("wateringIntervalDays") private var wateringIntervalDays = 2
     @AppStorage("minutesPerSession") private var minutesPerSession = 30.0
     @AppStorage("tankSize") private var tankSize: TankSize = .twoAndHalfGallons
-    @AppStorage("isFirstApplication") private var isFirstApplication = false
+    @State private var isFirstApplication = false
     @State private var showingSchedule = false
     @FocusState private var focusedField: FocusedField?
 
