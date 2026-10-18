@@ -7,7 +7,7 @@ struct WateringScheduleSection: View {
     let focusedField: FocusState<FocusedField?>.Binding
 
     var body: some View {
-        Section("Watering Schedule") {
+        Group {
             Picker("Watering interval", selection: $wateringIntervalDays) {
                 ForEach(1...14, id: \.self) { days in
                     Text(wateringIntervalLabel(for: days)).tag(days)

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+        A12026101700000000000001 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = A12026101700000000000002 /* PrivacyInfo.xcprivacy */; };
 		A12026091000000000000009 /* 1205-2022 Hose Bib Feed Chart Instructions v1.pdf in Resources */ = {isa = PBXBuildFile; fileRef = A12026091000000000000010 /* 1205-2022 Hose Bib Feed Chart Instructions v1.pdf */; };
 		A12026091000000000000007 /* FeedingChartPDFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12026091000000000000008 /* FeedingChartPDFView.swift */; };
 		A12026091000000000000005 /* FeedingChartSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12026091000000000000006 /* FeedingChartSheet.swift */; };
@@ -44,6 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+        A12026101700000000000002 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		A12026091000000000000010 /* 1205-2022 Hose Bib Feed Chart Instructions v1.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "1205-2022 Hose Bib Feed Chart Instructions v1.pdf"; sourceTree = "<group>"; };
 		A12026091000000000000008 /* FeedingChartPDFView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedingChartPDFView.swift"; sourceTree = "<group>"; };
 		A12026091000000000000006 /* FeedingChartSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedingChartSheet.swift"; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 		0A0B0C0D0E0F100000000802 /* EZFlowCalculator */ = {
 			isa = PBXGroup;
 			children = (
+                A12026101700000000000002 /* PrivacyInfo.xcprivacy */,
 				0A0B0C0D0E0F100000000101 /* EZFlowCalculatorApp.swift */,
 				0A0B0C0D0E0F100000000102 /* ContentView.swift */,
 				0A0B0C0D0E0F100000000103 /* EZFlowCalculator.swift */,
@@ -229,6 +232,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A0B0C0D0E0F100000000006 /* Assets.xcassets in Resources */,
+                A12026101700000000000001 /* PrivacyInfo.xcprivacy in Resources */,
 				A12026091000000000000009 /* 1205-2022 Hose Bib Feed Chart Instructions v1.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

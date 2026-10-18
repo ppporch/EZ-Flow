@@ -7,8 +7,7 @@ struct IrrigationSection: View {
     let focusedField: FocusState<FocusedField?>.Binding
 
     private var flowDiscMessageColor: Color {
-        guard let range = selectedDisc.flowRange else { return .secondary }
-        return range.contains(flowRate) ? .green : .orange
+        selectedDisc.isFlowInRange(flowRate) ? .green : .orange
     }
 
     var body: some View {

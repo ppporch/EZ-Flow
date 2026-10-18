@@ -3,6 +3,89 @@ import Testing
 @testable import EZFlowCalculator
 
 struct EZFlowCalculatorTests {
+    @Test(arguments: FertilizerRateUnit.allCases, TankSize.allCases)
+    func firstApplicationHalvesProductWithoutChangingCoverage(unit: FertilizerRateUnit, tank: TankSize) {
+        let full = EZFlowCalculation(
+            flowRateGPH: 104, feedSetting: .fast, flowDisc: .white,
+            fertilizerAmount: 2, fertilizerUnit: unit, fertilizerRateBasis: .perTwoGallons,
+            wateringIntervalDays: 2, minutesPerSession: 30, tankSize: tank
+        )
+        let first = EZFlowCalculation(
+            flowRateGPH: 104, feedSetting: .fast, flowDisc: .white,
+            fertilizerAmount: 2, fertilizerUnit: unit, fertilizerRateBasis: .perTwoGallons,
+            wateringIntervalDays: 2, minutesPerSession: 30, tankSize: tank,
+            isFirstApplication: true
+        )
+        #expect(first.fertilizerAmount == 2)
+        #expect(first.effectiveFertilizerAmount == 1)
+        #expect(first.productTeaspoons == full.productTeaspoons / 2)
+        #expect(first.productTeaspoonsPerSession == full.productTeaspoonsPerSession / 2)
+        #expect(first.productTeaspoonsPerWeek == full.productTeaspoonsPerWeek / 2)
+        #expect(first.productAmountInSelectedUnit == full.productAmountInSelectedUnit / 2)
+        #expect(first.runtimeHours == full.runtimeHours)
+        #expect(first.sessionsToEmpty == full.sessionsToEmpty)
+        #expect(first.weeksToEmpty == full.weeksToEmpty)
+    }
+
+    @Test func firstApplicationUsesEffectiveDoseForCapacityCheck() {
+        let full = EZFlowCalculation(
+            flowRateGPH: 104, feedSetting: .slow, flowDisc: .none,
+            fertilizerAmount: 1, fertilizerUnit: .teaspoon
+        )
+        let first = EZFlowCalculation(
+            flowRateGPH: 104, feedSetting: .slow, flowDisc: .none,
+            fertilizerAmount: 1, fertilizerUnit: .teaspoon, isFirstApplication: true
+        )
+        #expect(full.exceedsTankCapacity)
+        #expect(first.exceedsTankCapacity == false)
+    }
+
+    @Test(arguments: FertilizerRateUnit.allCases, FertilizerRateBasis.allCases)
+    func productResultPreservesLabelUnit(unit: FertilizerRateUnit, basis: FertilizerRateBasis) {
+        let calculation = EZFlowCalculation(
+            flowRateGPH: 104, feedSetting: .fast, flowDisc: .white,
+            fertilizerAmount: 2, fertilizerUnit: unit, fertilizerRateBasis: basis
+        )
+        #expect(calculation.productAmountInSelectedUnit == 125 / basis.gallons)
+        #expect(calculation.productInLabelUnitsSummary.contains(" \(unit.rawValue)"))
+    }
+
+    @Test(arguments: [
+        (2.99, FertilizerRateUnit.teaspoon),
+        (3.0, .tablespoon),
+        (11.99, .tablespoon),
+        (12.0, .cup),
+        (48.0, .cup),
+        (62.5, .cup)
+    ])
+    func productChoosesPracticalMeasurement(teaspoons: Double, expectedUnit: FertilizerRateUnit) {
+        // Fast with a white disc delivers 62.5 gallons from the default tank.
+        let calculation = EZFlowCalculation(
+            flowRateGPH: 104, feedSetting: .fast, flowDisc: .white,
+            fertilizerAmount: teaspoons / 62.5, fertilizerUnit: .teaspoon
+        )
+        #expect(calculation.preferredProductUnit == expectedUnit)
+        #expect(calculation.productTeaspoons.isClose(to: teaspoons))
+    }
+
+    @Test func defaultProductShowsCupsWithTeaspoonEquivalent() {
+        let calculation = EZFlowCalculation(
+            flowRateGPH: 104, feedSetting: .fast, flowDisc: .white,
+            fertilizerAmount: 2, fertilizerUnit: .teaspoon, fertilizerRateBasis: .perTwoGallons
+        )
+        #expect(calculation.productSummary == "1.3 cups")
+        #expect(calculation.productInLabelUnitsSummary == "62.5 tsp")
+    }
+
+    @Test func liquidProductKeepsFluidOuncesProminent() {
+        let calculation = EZFlowCalculation(
+            flowRateGPH: 104, feedSetting: .fast, flowDisc: .white,
+            fertilizerAmount: 2, fertilizerUnit: .fluidOunce, fertilizerRateBasis: .perTwoGallons
+        )
+        #expect(calculation.preferredProductUnit == .fluidOunce)
+        #expect(calculation.productSummary == "62.5 fl oz")
+    }
+
     @Test(arguments: FlowDisc.allCases)
     func smallTankUsesItsOwnChartColumn(disc: FlowDisc) {
         // Exact products; the printed chart rounds some entries (and prints 50 for 62.5 × .75).
@@ -110,6 +193,26 @@ struct EZFlowCalculatorTests {
         #expect(calculation.ratio == 1000)
         #expect(calculation.gallonsToEmpty == 2500)
         #expect(calculation.productTeaspoons == 7500)
+    }
+
+    @Test(arguments: [7.5, 30.0, 60.0, 104.0, 119.99])
+    func noDiscWarnsBelowMinimumFlow(flow: Double) {
+        #expect(FlowDisc.none.isFlowInRange(flow) == false)
+        let message = FlowDisc.none.flowMessage(for: flow)
+        #expect(message.contains("below the 120 GPH"))
+        #expect(message.contains("A Flo-Disc may be needed"))
+    }
+
+    @Test(arguments: [120.0, 120.01, 240.0, 10000.0])
+    func noDiscAcceptsMinimumAndHigherFlows(flow: Double) {
+        #expect(FlowDisc.none.isFlowInRange(flow))
+        #expect(FlowDisc.none.flowMessage(for: flow).contains("Flow meets the 120 GPH"))
+    }
+
+    @Test(arguments: [0.0, -1.0, Double.infinity, Double.nan])
+    func noDiscRequestsValidFlow(flow: Double) {
+        #expect(FlowDisc.none.isFlowInRange(flow) == false)
+        #expect(FlowDisc.none.flowMessage(for: flow).contains("Enter a flow greater than 0 GPH"))
     }
 
     @Test func whiteDiscFlowRangeIncludes104GPH() throws {

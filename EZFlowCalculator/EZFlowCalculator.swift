@@ -9,6 +9,7 @@ struct EZFlowCalculation {
     let fertilizerRateBasis: FertilizerRateBasis
     let wateringIntervalDays: Double
     let minutesPerSession: Double
+    let isFirstApplication: Bool
     let tankSize: TankSize
 
     init(
@@ -20,7 +21,8 @@ struct EZFlowCalculation {
         fertilizerRateBasis: FertilizerRateBasis = .perGallon,
         wateringIntervalDays: Double = 0,
         minutesPerSession: Double = 0,
-        tankSize: TankSize = .twoAndHalfGallons
+        tankSize: TankSize = .twoAndHalfGallons,
+        isFirstApplication: Bool = false
     ) {
         self.flowRateGPH = max(flowRateGPH, 0)
         self.feedSetting = feedSetting
@@ -31,6 +33,7 @@ struct EZFlowCalculation {
         self.wateringIntervalDays = max(wateringIntervalDays, 0)
         self.minutesPerSession = max(minutesPerSession, 0)
         self.tankSize = tankSize
+        self.isFirstApplication = isFirstApplication
     }
 
     var ratio: Double {
@@ -50,9 +53,33 @@ struct EZFlowCalculation {
         Int(exactly: (runtimeHours * 60).rounded())
     }
 
+    var effectiveFertilizerAmount: Double {
+        fertilizerAmount * (isFirstApplication ? 0.5 : 1)
+    }
+
+    var productAmountInSelectedUnit: Double {
+        productTeaspoons / fertilizerUnit.teaspoons
+    }
+
+    var preferredProductUnit: FertilizerRateUnit {
+        if fertilizerUnit == .fluidOunce { return .fluidOunce }
+        // A quarter cup replaces four tablespoons; smaller amounts use spoons.
+        if productTeaspoons >= 12 { return .cup }
+        if productTeaspoons >= 3 { return .tablespoon }
+        return .teaspoon
+    }
+
+    var productSummary: String {
+        preferredProductUnit.formattedAmount(teaspoons: productTeaspoons)
+    }
+
+    var productInLabelUnitsSummary: String {
+        fertilizerUnit.formattedAmount(teaspoons: productTeaspoons)
+    }
+
     var fertilizerTeaspoonsPerGallon: Double {
         guard fertilizerRateBasis.gallons > 0 else { return 0 }
-        return fertilizerAmount * fertilizerUnit.teaspoons / fertilizerRateBasis.gallons
+        return effectiveFertilizerAmount * fertilizerUnit.teaspoons / fertilizerRateBasis.gallons
     }
 
     var productTeaspoons: Double {

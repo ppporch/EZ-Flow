@@ -2,15 +2,17 @@ import SwiftUI
 import UIKit
 
 struct ContentView: View {
-    @State private var flowRate = 104.0
-    @State private var selectedDisc: FlowDisc = .white
-    @State private var selectedSetting: FeedSetting = .fast
-    @State private var fertilizerAmount = 2.0
-    @State private var fertilizerUnit: FertilizerRateUnit = .teaspoon
-    @State private var fertilizerRateBasis: FertilizerRateBasis = .perTwoGallons
-    @State private var wateringIntervalDays = 2
-    @State private var minutesPerSession = 30.0
-    @State private var tankSize: TankSize = .twoAndHalfGallons
+    @AppStorage("flowRate") private var flowRate = 104.0
+    @AppStorage("selectedDisc") private var selectedDisc: FlowDisc = .white
+    @AppStorage("selectedSetting") private var selectedSetting: FeedSetting = .fast
+    @AppStorage("fertilizerAmount") private var fertilizerAmount = 2.0
+    @AppStorage("fertilizerUnit") private var fertilizerUnit: FertilizerRateUnit = .teaspoon
+    @AppStorage("fertilizerRateBasis") private var fertilizerRateBasis: FertilizerRateBasis = .perTwoGallons
+    @AppStorage("wateringIntervalDays") private var wateringIntervalDays = 2
+    @AppStorage("minutesPerSession") private var minutesPerSession = 30.0
+    @AppStorage("tankSize") private var tankSize: TankSize = .twoAndHalfGallons
+    @AppStorage("isFirstApplication") private var isFirstApplication = false
+    @State private var showingSchedule = false
     @FocusState private var focusedField: FocusedField?
 
     private let presets: [FertilizerPreset] = [
@@ -30,7 +32,8 @@ struct ContentView: View {
             fertilizerRateBasis: fertilizerRateBasis,
             wateringIntervalDays: Double(wateringIntervalDays),
             minutesPerSession: minutesPerSession,
-            tankSize: tankSize
+            tankSize: tankSize,
+            isFirstApplication: isFirstApplication
         )
     }
 
@@ -45,15 +48,11 @@ struct ContentView: View {
                         selectedDisc: $selectedDisc,
                         focusedField: $focusedField
                     )
-                    WateringScheduleSection(
-                        wateringIntervalDays: $wateringIntervalDays,
-                        minutesPerSession: $minutesPerSession,
-                        focusedField: $focusedField
-                    )
                     FertilizerSection(
                         fertilizerAmount: $fertilizerAmount,
                         fertilizerUnit: $fertilizerUnit,
                         fertilizerRateBasis: $fertilizerRateBasis,
+                        isFirstApplication: $isFirstApplication,
                         calculation: calculation,
                         presets: presets,
                         focusedField: $focusedField
@@ -64,7 +63,17 @@ struct ContentView: View {
                         focusedField: $focusedField
                     )
                     ProductResultSection(calculation: calculation)
-                    ScheduleResultSection(calculation: calculation)
+                    Section {
+                        DisclosureGroup("Watering schedule and estimates", isExpanded: $showingSchedule) {
+                            WateringScheduleSection(
+                                wateringIntervalDays: $wateringIntervalDays,
+                                minutesPerSession: $minutesPerSession,
+                                focusedField: $focusedField
+                            )
+                            ScheduleResultSection(calculation: calculation)
+                        }
+                        .onChange(of: showingSchedule, dismissKeyboard)
+                    }
                     GuidanceSection()
                 }
                 .navigationTitle("EZ-Flow Calculator")

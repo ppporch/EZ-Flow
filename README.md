@@ -21,11 +21,24 @@ The app uses only the [2022 hose bib feeding chart from Drip Depot](https://www.
 
 The last two columns show irrigation gallons until fertilizer is used up. Values preserve exact capacity × ratio instead of printed rounding. The chart's ¾-gallon disc row for setting 2 prints 50, but 62.5 × 0.75 is 46.875; the app uses the exact calculation.
 
+## Flo-Disc flow guidance
+
+With **No Disc** selected, flows below 120 GPH show an orange message that a Flo-Disc may be needed, with a reminder to check the disc ranges and confirm injection by color in the clear outlet tube. At 120 GPH and above, the message confirms the minimum-flow guideline is met; it does not imply an upper operating limit or guarantee injection. Invalid or zero flow prompts for a positive flow value.
+
+This guidance comes from the [EZ-FLO Flo-Disc instructions](https://ezfloinjection.com/wp-content/uploads/2024/10/2021-Instructions-Flo-Disc-Web.pdf). The bundled feeding chart remains the source for dosage ratios.
+
+## Saved setup and results
+
+Tank size, flow, disc, feed setting, full label rate, first-application switch, and schedule are saved locally and restored on the next launch. New installations retain the existing defaults, with first-application dosing off.
+
+Enter equipment and the fertilizer label rate, choose the feed setting, then read the product amount in a practical measuring unit: teaspoons below 3 tsp, tablespoons from 3 tsp to less than ¼ cup, and cups from ¼ cup upward. Fluid-ounce inputs keep fluid ounces as the primary result. The amount in the entered unit appears directly below when it differs, with other volume equivalents farther down. For example, the default charge shows **About 1.3 cups**, equivalent to **62.5 tsp**. Expand **Watering schedule and estimates** for optional session/week planning; these estimates use the selected full or half dose. No account or internet connection is required.
+
 ## Calculations
 
 ```text
 irrigation gallons until fertilizer is used up = selected tank capacity * ratio
-product to add = irrigation gallons * product label rate per gallon
+effective rate = product label rate per gallon * (0.5 for first application, otherwise 1)
+product to add = irrigation gallons * effective rate
 feeding runtime = irrigation gallons / irrigation flow rate
 ```
 
@@ -39,7 +52,7 @@ Product needed per session/week assumes feeding at the entered rate throughout w
 
 The app suppresses filling instructions when calculated product volume exceeds the selected tank's nominal capacity. This is a gross capacity check, not a manufacturer-verified maximum product load. The feeding chart does not specify product-loading, dilution-space, or dry-product limits. Follow the unit's preparation instructions and product label. The calculator does not prescribe a top-off water quantity or validate powder displacement.
 
-For a first application, the chart recommends half the label dose. Enter that reduced rate yourself; the calculator does not halve it automatically. Recalculate the product charge when changing the feed setting, disc, or tank size. Feed rates are approximate.
+For a first application, the chart recommends half the label dose. Enter the full label rate and enable **First application: 50% of label rate**. The app preserves the entered label rate, shows the effective rate, and applies the reduction once to the tank charge and session/week product estimates. Feeding runtime and water coverage do not change. The switch is remembered; turn it off for later applications at the full label rate. Recalculate the product charge when changing the feed setting, disc, or tank size. Feed rates are approximate.
 
 ## Build and test
 
