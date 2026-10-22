@@ -1,6 +1,6 @@
 import Foundation
 
-enum FertilizerRateUnit: String, CaseIterable, Identifiable {
+enum FertilizerRateUnit: String, CaseIterable, Identifiable, Codable {
     case teaspoon
     case tablespoon
     case fluidOunce

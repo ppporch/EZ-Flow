@@ -1,4 +1,4 @@
-enum FeedSetting: String, CaseIterable, Identifiable {
+enum FeedSetting: String, CaseIterable, Identifiable, Codable {
     case slow
     case one
     case two

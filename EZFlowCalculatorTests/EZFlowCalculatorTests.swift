@@ -50,40 +50,22 @@ struct EZFlowCalculatorTests {
         #expect(calculation.productInLabelUnitsSummary.contains(" \(unit.displayName)"))
     }
 
-    @Test(arguments: [
-        (2.99, FertilizerRateUnit.teaspoon),
-        (3.0, .tablespoon),
-        (11.99, .tablespoon),
-        (12.0, .cup),
-        (48.0, .cup),
-        (62.5, .cup)
-    ])
-    func productChoosesPracticalMeasurement(teaspoons: Double, expectedUnit: FertilizerRateUnit) {
-        // Fast with a white disc delivers 62.5 gallons from the default tank.
-        let calculation = EZFlowCalculation(
-            flowRateGPH: 104, feedSetting: .fast, flowDisc: .white,
-            fertilizerAmount: teaspoons / 62.5, fertilizerUnit: .teaspoon
-        )
-        #expect(calculation.preferredProductUnit == expectedUnit)
-        #expect(calculation.productTeaspoons.isClose(to: teaspoons))
-    }
-
     @Test func defaultProductShowsCupsWithTeaspoonEquivalent() {
         let calculation = EZFlowCalculation(
             flowRateGPH: 104, feedSetting: .fast, flowDisc: .white,
             fertilizerAmount: 2, fertilizerUnit: .teaspoon, fertilizerRateBasis: .perTwoGallons
         )
-        #expect(calculation.productSummary == "1.3 cups")
+        #expect(calculation.productSummary == "1¼ cups + 2½ tsp")
         #expect(calculation.productInLabelUnitsSummary == "62.5 tsp")
     }
 
-    @Test func liquidProductKeepsFluidOuncesProminent() {
+    @Test func liquidProductHasFractionalMeasurementAndFluidOunceEquivalent() {
         let calculation = EZFlowCalculation(
             flowRateGPH: 104, feedSetting: .fast, flowDisc: .white,
             fertilizerAmount: 2, fertilizerUnit: .fluidOunce, fertilizerRateBasis: .perTwoGallons
         )
-        #expect(calculation.preferredProductUnit == .fluidOunce)
-        #expect(calculation.productSummary == "62.5 fl oz")
+        #expect(calculation.productSummary == "7¾ cups + 1 Tbsp")
+        #expect(calculation.productInLabelUnitsSummary == "62.5 fl oz")
     }
 
     @Test(arguments: FlowDisc.allCases)

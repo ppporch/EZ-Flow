@@ -61,16 +61,8 @@ struct EZFlowCalculation {
         productTeaspoons / fertilizerUnit.teaspoons
     }
 
-    var preferredProductUnit: FertilizerRateUnit {
-        if fertilizerUnit == .fluidOunce { return .fluidOunce }
-        // A quarter cup replaces four tablespoons; smaller amounts use spoons.
-        if productTeaspoons >= 12 { return .cup }
-        if productTeaspoons >= 3 { return .tablespoon }
-        return .teaspoon
-    }
-
     var productSummary: String {
-        preferredProductUnit.formattedAmount(teaspoons: productTeaspoons)
+        KitchenMeasurement.summary(teaspoons: productTeaspoons)
     }
 
     var productInLabelUnitsSummary: String {
@@ -144,5 +136,9 @@ struct EZFlowCalculation {
 
     var exceedsTankCapacity: Bool {
         productGallons > tankSize.gallons
+    }
+
+    var exceedsDilutionCapacity: Bool {
+        flowDisc.hasDisc && productGallons * 4 > tankSize.gallons
     }
 }

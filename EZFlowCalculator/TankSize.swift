@@ -1,4 +1,4 @@
-enum TankSize: String, CaseIterable, Identifiable {
+enum TankSize: String, CaseIterable, Identifiable, Codable {
     case twoAndHalfGallons
     case threeQuarterGallon
 

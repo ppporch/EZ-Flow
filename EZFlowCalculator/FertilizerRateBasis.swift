@@ -1,4 +1,4 @@
-enum FertilizerRateBasis: String, CaseIterable, Identifiable {
+enum FertilizerRateBasis: String, CaseIterable, Identifiable, Codable {
     case perGallon
     case perTwoGallons
 

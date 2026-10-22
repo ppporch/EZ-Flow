@@ -1,6 +1,6 @@
 import Foundation
 
-enum FlowDisc: String, CaseIterable, Identifiable {
+enum FlowDisc: String, CaseIterable, Identifiable, Codable {
     case none
     case white
     case black
@@ -37,6 +37,14 @@ enum FlowDisc: String, CaseIterable, Identifiable {
     // EZ-FLO Flo-Disc instructions: below 120 GPH a disc may be needed.
     // https://ezfloinjection.com/wp-content/uploads/2024/10/2021-Instructions-Flo-Disc-Web.pdf
     static let noDiscMinimumFlowGPH = 120.0
+
+    static func recommended(for flow: Double) -> FlowDisc? {
+        guard flow.isFinite, flow >= 7.5 else { return nil }
+        if flow >= 120 { return FlowDisc.none }
+        if flow >= 60 { return .white }
+        if flow >= 30 { return .black }
+        return .red
+    }
 
     func isFlowInRange(_ gallonsPerHour: Double) -> Bool {
         guard gallonsPerHour.isFinite, gallonsPerHour > 0 else { return false }

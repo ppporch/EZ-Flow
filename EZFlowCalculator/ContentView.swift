@@ -1,112 +1,75 @@
 import SwiftUI
-import UIKit
 
 struct ContentView: View {
-    @AppStorage("flowRate") private var flowRate = 104.0
-    @AppStorage("selectedDisc") private var selectedDisc: FlowDisc = .white
-    @AppStorage("selectedSetting") private var selectedSetting: FeedSetting = .fast
-    @AppStorage("fertilizerAmount") private var fertilizerAmount = 2.0
-    @AppStorage("fertilizerUnit") private var fertilizerUnit: FertilizerRateUnit = .teaspoon
-    @AppStorage("fertilizerRateBasis") private var fertilizerRateBasis: FertilizerRateBasis = .perTwoGallons
-    @AppStorage("wateringIntervalDays") private var wateringIntervalDays = 2
-    @AppStorage("minutesPerSession") private var minutesPerSession = 30.0
-    @AppStorage("tankSize") private var tankSize: TankSize = .twoAndHalfGallons
-    @State private var isFirstApplication = false
-    @State private var showingSchedule = false
-    @FocusState private var focusedField: FocusedField?
-
-    private let presets: [FertilizerPreset] = [
-        FertilizerPreset(title: "2 tsp/2 gal", amount: 2, unit: .teaspoon, basis: .perTwoGallons),
-        FertilizerPreset(title: "2 Tbsp/2 gal", amount: 2, unit: .tablespoon, basis: .perTwoGallons),
-        FertilizerPreset(title: "4 Tbsp/2 gal", amount: 4, unit: .tablespoon, basis: .perTwoGallons),
-        FertilizerPreset(title: "2 fl oz/2 gal", amount: 2, unit: .fluidOunce, basis: .perTwoGallons)
-    ]
-
-    private var calculation: EZFlowCalculation {
-        EZFlowCalculation(
-            flowRateGPH: flowRate,
-            feedSetting: selectedSetting,
-            flowDisc: selectedDisc,
-            fertilizerAmount: fertilizerAmount,
-            fertilizerUnit: fertilizerUnit,
-            fertilizerRateBasis: fertilizerRateBasis,
-            wateringIntervalDays: Double(wateringIntervalDays),
-            minutesPerSession: minutesPerSession,
-            tankSize: tankSize,
-            isFirstApplication: isFirstApplication
-        )
-    }
+    @State private var store = CalculatorStore()
+    @State private var path: [UUID] = []
+    @State private var didOpenInitialSetup = false
+    @State private var showingNewSetup = false
+    @State private var deletingSetup: IrrigationSetup?
 
     var body: some View {
-        NavigationStack {
-            ScrollViewReader { scrollProxy in
-                Form {
-                    TankSection(tankSize: $tankSize)
-                        .onChange(of: tankSize, dismissKeyboard)
-                    IrrigationSection(
-                        flowRate: $flowRate,
-                        selectedDisc: $selectedDisc,
-                        focusedField: $focusedField
-                    )
-                    FertilizerSection(
-                        fertilizerAmount: $fertilizerAmount,
-                        fertilizerUnit: $fertilizerUnit,
-                        fertilizerRateBasis: $fertilizerRateBasis,
-                        isFirstApplication: $isFirstApplication,
-                        calculation: calculation,
-                        presets: presets,
-                        focusedField: $focusedField
-                    )
-                    SettingSection(
-                        selectedSetting: $selectedSetting,
-                        calculation: calculation,
-                        focusedField: $focusedField
-                    )
-                    ProductResultSection(calculation: calculation)
-                    Section {
-                        DisclosureGroup("Watering schedule and estimates", isExpanded: $showingSchedule) {
-                            WateringScheduleSection(
-                                wateringIntervalDays: $wateringIntervalDays,
-                                minutesPerSession: $minutesPerSession,
-                                focusedField: $focusedField
-                            )
-                            ScheduleResultSection(calculation: calculation)
+        NavigationStack(path: $path) {
+            List {
+                Section {
+                    Label("How much fertilizer should I add?", systemImage: "leaf").font(.headline)
+                    Text("Choose your location, review its saved settings, and see how much fertilizer to add.")
+                        .foregroundStyle(.secondary)
+                }
+                Section("Your locations") {
+                    ForEach(store.library.setups) { setup in
+                        NavigationLink(value: setup.id) {
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text(setup.name).font(.headline)
+                                Text("\(setup.tankSize.displayName) · \(setup.flowGPH.formatted(.number.precision(.fractionLength(0...1)))) GPH")
+                                    .font(.subheadline).foregroundStyle(.secondary)
+                            }
                         }
-                        .onChange(of: showingSchedule, dismissKeyboard)
+                        .swipeActions { Button("Delete", role: .destructive) { deletingSetup = setup } }
                     }
-                    GuidanceSection()
+                    Button("Add setup", systemImage: "plus") { showingNewSetup = true }
+                        .accessibilityIdentifier("addSetup")
                 }
-                .navigationTitle("EZ-Flow Calculator")
-                .scrollDismissesKeyboard(.interactively)
-                .toolbar {
-                    ToolbarItemGroup(placement: .keyboard) {
-                        Spacer()
-                        Button("Done", action: dismissKeyboard)
+                Section {
+                    NavigationLink { FertilizerLibraryView(store: store) } label: {
+                        Label("Saved fertilizers", systemImage: "books.vertical")
+                    }
+                } footer: {
+                    Text("Fertilizer profiles are shared across all setups. Everything is saved on this device.")
+                }
+                if let error = store.storageError {
+                    Section { Label(error, systemImage: "exclamationmark.triangle").foregroundStyle(.red) }
+                }
+            }
+            .navigationTitle("EZ-Flow")
+            .navigationDestination(for: UUID.self) { id in
+                if let setup = store.setup(id: id) {
+                    SetupEntryView(store: store, setup: setup)
+                } else {
+                    ContentUnavailableView("Setup unavailable", systemImage: "leaf")
+                }
+            }
+            .sheet(isPresented: $showingNewSetup) {
+                NewSetupView(store: store) { id in path.append(id) }
+            }
+            .confirmationDialog("Delete this setup?", isPresented: .init(
+                get: { deletingSetup != nil }, set: { if !$0 { deletingSetup = nil } }
+            ), titleVisibility: .visible) {
+                if let setup = deletingSetup {
+                    Button("Delete \(setup.name)", role: .destructive) {
+                        store.deleteSetup(id: setup.id)
+                        deletingSetup = nil
                     }
                 }
-                .onChange(of: focusedField) {
-                    revealFocusedField(using: scrollProxy)
-                }
-                .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardDidShowNotification)) { _ in
-                    // Repeat after the keyboard has resized the form's visible area.
-                    revealFocusedField(using: scrollProxy)
-                }
+            } message: {
+                Text("Its saved equipment and drip configuration will be removed. Shared fertilizers will stay available.")
+            }
+            .onAppear {
+                guard !didOpenInitialSetup else { return }
+                didOpenInitialSetup = true
+                if store.library.setups.count == 1, let setup = store.library.setups.first { path = [setup.id] }
             }
         }
     }
-
-    private func revealFocusedField(using scrollProxy: ScrollViewProxy) {
-        guard let focusedField else { return }
-        withAnimation {
-            scrollProxy.scrollTo(focusedField, anchor: .center)
-        }
-    }
-
-    private func dismissKeyboard() {
-        focusedField = nil
-    }
 }
 
-#Preview {
-    ContentView()
-}
+#Preview { ContentView() }
